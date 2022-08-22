@@ -27,7 +27,7 @@ class Dataloader(object):
             images.append(image)
         images = np.array(images)
         label = np.array(text['2_way_label'])
-        return txt, images
+        return txt, images, label
 
     def txt2tensor(self, text, max_len=512):
         input_ids = list()
