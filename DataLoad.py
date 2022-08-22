@@ -28,7 +28,9 @@ class Dataloader(object):
         images = np.array(images)
         label = np.array(text['2_way_label'])
         return txt, images, label
-
+    
+    
+    @staticmethod
     def txt2tensor(self, text, max_len=512):
         input_ids = list()
         token_type_ids = list()
@@ -43,7 +45,8 @@ class Dataloader(object):
         token_type_ids = torch.from_numpy(np.array(token_type_ids))
         attention_mask = torch.from_numpy(np.array(attention_mask))
         return input_ids, token_type_ids, attention_mask
-
+    
+    @staticmethod
     def img2tensor(self, images):
         transform = transforms.Compose([transforms.RandomCrop(32,padding = 4),
                                         transforms.RandomHorizontalFlip(),
@@ -53,7 +56,8 @@ class Dataloader(object):
                                         ])
         images = transform(images)
         return images
-
+    
+    @staticmethod
     def label2tensor(self, label):
         return torch.from_numpy(np.array(label))
 
