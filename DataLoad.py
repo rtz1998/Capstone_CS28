@@ -14,7 +14,7 @@ class Dataloader(object):
         self.image_path = image_path
 
     def read_text_image(self):
-        text = pd.read_csv(self.text_path, delimiter='\t').head()
+        text = pd.read_csv(self.text_path, delimiter='\t')
         col = ['clean_title', 'id', 'image_url', '2_way_label']
         text = text[col]
         text = text.dropna(axis=0)
@@ -60,6 +60,6 @@ class Dataloader(object):
         input_ids, token_type_ids, attention_mask = self.txt2tensor(txt)
         labels = self.label2tensor(labels)
         dataset = TensorDataset(input_ids, token_type_ids, attention_mask, images, labels)
-        loader = DataLoader(dataset=dataset, batch_size=2, shuffle=True, num_workers=0, drop_last=True)
+        loader = DataLoader(dataset=dataset, batch_size=64, shuffle=True, num_workers=0, drop_last=True)
 
         return loader
